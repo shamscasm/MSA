@@ -1,0 +1,604 @@
+{% load static %}
+    <!-- REFERENCE FOR LOAD STATIC TAG FOR SRC
+        
+ 
+
+also remove the "asset" and replace with static
+
+<img src="{% static 'my_app/example.jpg' %}" alt="My image">
+ 
+     -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="TRU MSA">
+    <meta name="author" content="Shams Khan">
+    <title>TRU MSA</title>
+    <link rel="icon" href="{% static 'imgs/My project.png' %}" type="image/png">
+
+    <link rel="stylesheet" href="static/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Steller main styles -->
+	<link rel="stylesheet" href="static/css/steller.css">
+    <style>
+        @keyframes fadeInGrow {
+            0% {
+                opacity: 0;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .subtitle {
+            animation: fadeInGrow 2s forwards; /* The animation will last for 2 seconds and will remain at the end state when completed */
+        }
+
+        @keyframes bounceIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+ 
+
+        .calendar-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .days-of-week {
+            display: flex;
+        }
+        
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* 7 days in a week */
+            gap: 5px;
+        }
+        
+        .date {
+            padding: 10px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        
+        .date.today {
+            background-color: #ff00ff; /* Highlight color for today */
+        }
+        
+        .date.not-current-month {
+            background-color: #e0e0e0; /* Different color for days not in the current month */
+        }
+        
+        .next-prayer-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+    
+
+      
+    </style>
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+
+
+    <!-- Page navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-image: linear-gradient(135deg,#003c50, #6e8efb, #003c50);" data-spy="affix" data-offset-top="0">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'imgs/My project.png' %}" alt="MSA logo" style="height: 69px box-shadow: none; border: none; filter: none;">  <!-- Added image here -->
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#service">Service</a>
+                </li>                   
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Prayer times </a>
+                </li>
+              
+              
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="- btn btn-primary rounded ml-4" href=" ">SUBSCRIBE</a>
+                </li>
+            </ul>
+        </div>
+    </div>          
+</nav>
+<!-- End of page navibation -->
+<header class="header" id="home" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('static/imgs/prayer.png'); background-size: cover; background-position: center center; background-repeat: no-repeat; padding-top: 60px;"> <!-- Adjusted padding-top -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="infos">
+                    <h6 class="subtitle text-white py-2">أهلاً وسهلاً</h6>
+                    <h6 class="title py-3" style="animation: bounceIn 1s; color: white;">The Muslim Student's Association at TRU</h6> <!-- Adjusted padding here -->
+                    <p class="py-2" style="animation: bounceIn 1s; color: white;">An organization for helping Muslim students at TRU</p>
+
+                    <div class="buttons pt-3">
+                        <a href="#contact">
+                            <button class="btn btn-primary rounded">Contact us</button>
+                        </a>
+                        <button class="btn btn-primary rounded">More info</button>
+                    </div>
+
+                    <div class="socials mt-4">
+                        <a class="social-item" href="https://www.facebook.com/TRUMSA"><i class="ti-facebook"></i></a>
+                        <a class="social-item" href="https://youtube.com/@trumsa429?si=B9punBXOcfkINV8U"><i class="ti-youtube"></i></a>
+                        <a class="social-item" href="https://www.instagram.com/tru_msa/?igshid=NmNmNjAwNzg%3D"><i class="ti-instagram"></i></a>
+                        <a class="social-item" href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 text-center">
+                <div class="img-holder pt-3">
+                    <img src="{% static 'imgs/My project.png' %}" alt="MSA LOGO" class="img-fluid" style="max-width: 70%; height: auto; margin-bottom: 170px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+ 
+<!-- Service section -->
+<section id="service" class="section">
+    <div class="container text-center">
+        <h6 class="subtitle">Service</h6>
+        <!-- Animation for the Title -->
+        <h6 class="section-title mb-4" style="animation: bounceIn 1.5s;">What We Offer</h6>
+        
+        <div class="row">
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="custom-card card border">
+                    <div class="card-body">
+                        <i class="icon ti-crown"></i>
+                        <h5 style="padding: 10px;">Prayer Services</h5> 
+                        <p style="padding: 10px;">Access information about prayer spaces, prayer time schedules, and Jummah prayer locations, allowing you to maintain your religious practices .</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="custom-card card border">
+                    <div class="card-body">
+                        <i class="icon ti-desktop"></i>
+                        <h5 style="padding: 10px;">Event Calendar</h5>
+                        <p style="padding: 10px;">Stay updated on our exciting events, including halkah (Islamic lectures), social gatherings, iftar (fast-breaking), and more events in the community.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="custom-card card border">
+                    <div class="card-body">
+                        <i class="icon ti-mobile"></i>
+                        <h5 style="padding: 10px;">Shahadas</h5>
+                        <p style="padding: 10px;">Explore the resources we offer, from educational materials to counseling services, designed to support your holistic development.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="custom-card card border">
+                    <div class="card-body">
+                        <i class="icon ti-bar-chart"></i>
+                        <h5 style="padding: 10px;">Fiqh lessons</h5>
+                        <p style="padding: 10px;">Read articles on a variety of topics, including news about our events, insightful reflections, and important updates within our community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Section -->
+
+<!-- Skills section -->
+<section class="section">
+    <div class="container text-center">
+        <h6 class="subtitle">Skills</h6>
+        <h6 class="section-title mb-4">Why MSA</h6>
+        <p class="mb-5 pb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. <br> rerum commodi corrupti, temporibus non quam.</p>
+
+        <div class="row text-left">
+            <div class="col-sm-6">
+                <h6 class="mb-3">KNOWLEGDE </h6>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 89%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>89%</span></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h6 class="mb-3">HALAQats</h6>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 83%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>83%</span></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h6 class="mb-3">quran</h6>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 95%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>95%</span></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h6 class="mb-3">deen</h6>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</section>
+<!-- End of Skills sections -->
+
+<!-- Portfolio section 
+<section id="portfolio" class="section">
+    <div class="container text-center">
+        <h6 class="subtitle">Check out latest islamic news </h6>
+        <h6 class="section-title mb-4">News</h6>
+        <p class="mb-5 pb-4">put news headlines and articles here .</p>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="img-wrapper">
+                    <img src="{% static  'imgs/folio-1.jpg' %}" alt="">
+                    <div class="overlay">
+                        <div class="overlay-infos">
+                            <h5>Project Title</h5>
+                            <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                        </div>  
+                    </div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="{% static  'imgs/folio-2.jpg' %}" alt="">
+                    <div class="overlay">
+                        <div class="overlay-infos">
+                            <h5>Project Title</h5>
+                            <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                        </div>                              
+                    </div>
+                </div>                  
+            </div>
+            <div class="col-sm-4">
+                <div class="img-wrapper">
+                    <img src="{% static  'imgs/folio-3.jpg' %}" alt="">
+                    <div class="overlay">
+                        <div class="overlay-infos">
+                            <h5>Project Title</h5>
+                            <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                        </div>  
+                    </div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="{% static  'imgs/folio-4.jpg' %}" alt="">
+                    <div class="overlay">
+                        <div class="overlay-infos">
+                            <h5>Project Title</h5>
+                            <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                        </div>                              
+                    </div>
+                </div>                  
+            </div>
+            <div class="col-sm-4">
+                <div class="img-wrapper">
+                    <img src="{% static 'imgs/folio-5.jpg'  %}" alt="">
+                    <div class="overlay">
+                        <div class="overlay-infos">
+                            <h5>Project Title</h5>
+                            <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                        </div>  
+                    </div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="{% static  'imgs/folio-6.jpg' %}" alt="">
+                    <div class="overlay">
+                        <div class="overlay-infos">
+                            <h5>Project Title</h5>
+                            <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                        </div>                              
+                    </div>
+                </div>                  
+            </div>
+        </div>
+
+    </div>
+</section>
+
+-->
+
+
+<!-- testimonial section -->
+<section id="testmonial" class="section">
+<div class="container text-center">
+    <h6 class="subtitle">Event Calendar</h6>
+    <h6 class="section-title mb-4">MSA events</h6>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+        </ol>
+        <div class="carousel-inner">
+            <!-- Brothers Halakah Event -->
+            <div class="carousel-item active">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/brothersHalakah.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Brothers Halakah event.</p>
+                        <h1 class="title" style="color: white;">Brothers Halakah</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bowling Event -->
+            <div class="carousel-item">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/bowling.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Bowling event.</p>
+                        <h1 class="title" style="color: white;">Bowling Event</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Islamic Movie Night -->
+            <div class="carousel-item">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/movieNight.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Islamic Movie Night.</p>
+                        <h1 class="title" style="color: white;">Islamic Movie Night</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Iftaar Event -->
+            <div class="carousel-item">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/iftaarEvent.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Iftaar event.</p>
+                        <h1 class="title" style="color: white;">Iftaar Event</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Club Day -->
+            <div class="carousel-item">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/clubDay.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Club Day.</p>
+                        <h1 class="title" style="color: white;">Club Day</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dawah Booth -->
+            <div class="carousel-item">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/dawahBooth.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Dawah Booth.</p>
+                        <h1 class="title" style="color: white;">Dawah Booth</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Iftar Distribution -->
+            <div class="carousel-item">
+                <div class="card testmonial-card border" style="background-image: url('static/imgs/iftaarDistribution.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
+                    <div class="card-body">
+                        <p style="color: white;">Description for Iftar Distribution.</p>
+                        <h1 class="title" style="color: white;">Iftar Distribution</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+<!-- End of testimonial section -->
+
+
+<!-- Blog Section -->
+<section id="blog" class="section">
+    <div class="container text-center">
+        <h6 class="subtitle">MSA Blogs</h6>
+        <h6 class="section-title mb-4">Latest News</h6>
+        <p class="mb-5 pb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. <br> rerum commodi corrupti, temporibus non quam.</p>
+
+        <div class="row text-left">
+            <div class="col-md-4">
+                <div class="card border mb-4">
+                    <img src="{% static 'imgs/blog-1.jpg' %}" alt="" class="card-img-top w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">NEWS 1 </h5>
+                        <div class="post-details">
+                            <a href="javascript:void(0)">Posted By: Admin</a>
+                            <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
+                            <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
+                        <a href="javascript:void(0)">Read More..</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border mb-4">
+                    <img src=" {% static "imgs/blog-2.jpg" %}" alt="" class="card-img-top w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">NEWS 2 </h5>
+                        <div class="post-details">
+                            <a href="javascript:void(0)">Posted By: Admin</a>
+                            <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
+                            <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
+                        <a href="javascript:void(0)">Read More..</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border mb-4">
+                    <img src="{% static 'imgs/blog-3.jpg' %}" alt="" class="card-img-top w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">NEWS 3 </h5>
+                        <div class="post-details">
+                            <a href="javascript:void(0)">Posted By: Admin</a>
+                            <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
+                            <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
+                        <a href="javascript:void(0)">Read More..</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hire me section -->
+<section class="bg-gray p-0 section">
+    <div class="container">
+        <div class="card bg-primary">
+            <div class="card-body text-light">
+                <div class="row align-items-center">
+                    <div class="col-sm-9 text-center text-sm-left">
+                        <h5 class="mt-3">CONTACT MSA FOR ISLAMIC HELP</h5>
+                        <p class="mb-3">Accusantium labore nostrum similique quisquam.</p>
+                    </div>
+                    <div class="col-sm-3 text-center text-sm-right">
+                        <button class="btn btn-light rounded">CONTACT US</button>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>      
+<!-- End od Hire me section. -->
+
+<!-- Contact Section -->
+<section id="contact" class="position-relative section">
+    <div class="container text-center">
+        <h6 class="subtitle">Contact</h6>
+        <h6 class="section-title mb-4">Get In Touch With Msa</h6>
+        <p class="mb-5 pb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. <br> rerum commodi corrupti, temporibus non quam.</p>
+
+        <div class="contact text-left">
+            <div class="form">
+                <h6 class="subtitle">Available 24/7</h6>
+                <h6 class="section-title mb-4">Get In Touch</h6>
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="contact-message" id="" cols="30" rows="5" class="form-control" placeholder="Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block rounded w-lg">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-infos">
+                <div class="item">
+                    <i class="ti-location-pin"></i>
+                    <div class="">
+                        <h5>Location</h5>
+                        <p> tru street kamloops </p>
+                    </div>                          
+                </div>
+                <div class="item">
+                    <i class="ti-mobile"></i>
+                    <div>
+                        <h5>Phone Number</h5>
+                        <p>(123) 456-7890</p>
+                    </div>                          
+                </div>
+                <div class="item">
+                    <i class="ti-email"></i>
+                    <div class="mb-0">
+                        <h5>Email Address</h5>
+                        <p>msa@gmail.com</p>
+                    </div>
+                </div>
+            </div>                  
+        </div>
+    </div>  
+    <div id="map">
+        <iframe width="595" height="377" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=595&amp;height=377&amp;hl=en&amp;q=835%20University%20Dr,%20BC%20%20%20KamloopS+(TRU%20PRAYER%20ROOM)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href='https://maps-generator.com/'>Maps Generator</a>
+
+    </div>      
+</section>
+<!-- End of Contact Section -->
+
+    
+    <!-- Page Footer --> 
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <p>Copyright MSA <script>document.write(new Date().getFullYear())</script> </p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="socials">
+                        <a class="social-item" href="javascript:void(0)"><i class="ti-facebook"></i></a>
+                        <a class="social-item" href="javascript:void(0)"><i class="ti-google"></i></a>
+                        <a class="social-item" href="javascript:void(0)"><i class="ti-github"></i></a>
+                        <a class="social-item" href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <!-- End of page footer -->
+	
+	<!-- core  -->
+    <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+    <!-- bootstrap 3 affix -->
+	<script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
+
+    <!-- steller js -->
+    <script src= "{% static 'js/steller.js' %}"></script>
+
+
+
+ 
+
+
+</body>
+</html>
