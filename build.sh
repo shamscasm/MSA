@@ -3,6 +3,8 @@
 set -o errexit
 
 pip install -r requirements.txt
+python manage.py makemigration
 
-python manage.py collectstatic --no-input
 python manage.py migrate
+python manage.py collectstatic 
+python manage.py runserver 
