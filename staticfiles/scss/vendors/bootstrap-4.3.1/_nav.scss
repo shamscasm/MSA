@@ -55,8 +55,8 @@
 
   .nav-link.active,
   .nav-item.show .nav-link {
-    color: $nav-tabs-link-active-color;
-    background-color: $nav-tabs-link-active-bg;
+    // color: $nav-tabs-link-active-color;
+    // background-color: $nav-tabs-link-active-bg;
     border-color: $nav-tabs-link-active-border-color;
   }
 
@@ -78,12 +78,6 @@
     @include border-radius($nav-pills-border-radius);
   }
 
-  .nav-link.active,
-  .show > .nav-link {
-    color: $nav-pills-link-active-color;
-    background-color: $nav-pills-link-active-bg;
-  }
-}
 
 
 //
