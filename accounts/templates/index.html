@@ -46,6 +46,25 @@ also remove the "asset" and replace with static
                 transform: scale(1.1);
             }
         }
+        .top-bar {
+            background-color: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .top-bar span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
 
         .subtitle {
             animation: fadeInGrow 2s forwards; /* The animation will last for 2 seconds and will remain at the end state when completed */
@@ -155,7 +174,9 @@ also remove the "asset" and replace with static
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-
+    <div class="top-bar">
+        <span>This website is still under development</span>
+    </div>
 
 <!-- Page navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:#003C50;" data-spy="affix" data-offset-top="0">

@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/steller.css' %}">
     <style>
+        .top-bar {
+            background-color: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .top-bar span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
         .team-member {
             margin-top: 30px;
         }
@@ -28,6 +48,9 @@
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <span>This website is still under development</span>
+    </div>
 
 <!-- Page navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:#003C50;" data-spy="affix" data-offset-top="0">

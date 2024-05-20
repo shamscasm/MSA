@@ -33,6 +33,27 @@ also remove the "asset" and replace with static
     <!-- steller js -->
     <script src="{% static 'js/steller.js' %}"></script>
     <style>
+  
+.top-bar {
+            background-color: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .top-bar span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
         @keyframes fadeInGrow {
             0% {
                 opacity: 0;
@@ -105,6 +126,56 @@ also remove the "asset" and replace with static
         .date.not-current-month {
             background-color: #e0e0e0;
             /* Different color for days not in the current month */
+        }
+   
+      
+        h1, h2, h3 {
+            color: #003366;
+        }
+        .schedule-table-container {
+            overflow-x: auto;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            min-width: 600px;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .schedule-table th {
+            background-color: #f2f2f2;
+        }
+        .schedule-table td {
+            background-color: #f9f9f9;
+        }
+        .important-announcements {
+            margin-top: 20px;
+        }
+        .important-announcements ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .important-announcements li {
+            margin-bottom: 10px;
+        }
+        .important-announcements a {
+            color: #0066cc;
+        }
+        .important-announcements a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .schedule-table th, .schedule-table td {
+                font-size: 14px;
+                padding: 6px;
+            }
         }
 
         .next-prayer-info {
@@ -240,6 +311,9 @@ also remove the "asset" and replace with static
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <div class="top-bar">
+        <span>This website is still under development</span>
+    </div>
 
 
 
@@ -260,20 +334,11 @@ also remove the "asset" and replace with static
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#service">Service</a>
-                    </li>                   
+                                
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'prayer' %}">Prayer times </a>
                     </li>
                   
-              
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="- btn btn-primary rounded ml-4" href="https://docs.google.com/forms/d/13JGfi9Y8xlkKkxP_4exiJJGx-BY4teujUkn-nPZni3I/viewform?edit_requested=true ">SUBSCRIBE</a>
-                    </li>
                 </ul>
             </div>
         </div>          
@@ -454,8 +519,131 @@ also remove the "asset" and replace with static
     
         <div class="instagram-embed-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/l1Z3be4F_cU?si=dEzPqoCDXWMY7IKG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
-  <img src="{% static 'imgs/img-jummah.jpeg' %}" alt="MSA logo" style=" box-shadow: none; border: none; filter: none;">  <!-- Corrected image here -->
-  
+  <!-- <img src="{% static 'imgs/img-jummah.jpeg' %}" alt="MSA logo" style=" box-shadow: none; border: none; filter: none;">  Corrected image here -->
+  <section>
+   
+
+
+<h1>TRU MSA – Friday Prayer Schedule</h1>
+<h2>Summer 2024 Semester</h2>
+
+<div class="schedule-table-container">
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>May 3, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
+            </tr>
+            <tr>
+                <td>May 10, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>May 17, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>May 24, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>May 31, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>June 7, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
+            </tr>
+            <tr>
+                <td>June 14, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>June 21, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
+            </tr>
+            <tr>
+                <td>June 28, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>July 5, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>July 12, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
+            </tr>
+            <tr>
+                <td>July 19, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>July 26, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>August 2, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>August 9, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>August 16, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>August 23, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
+            </tr>
+            <tr>
+                <td>August 30, 2024</td>
+                <td>2:00pm</td>
+                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="important-announcements">
+    <h3>Important Announcements & Protocols</h3>
+    <ul>
+        <li>Please bring your own prayer mat.</li>
+        <li>Please make wudu prior to arriving at the venues. Ablution facilities are also available in Old Main first level washrooms by Student Street.</li>
+        <li>Please place your shoes neatly outside of the room.</li>
+        <li>Coned area in the back is reserved for sisters.</li>
+        <li>Please do not crowd the entrance after the prayer.</li>
+        <li>For venue locations, please refer to <a href="https://www.tru.ca/map.html">campus map</a>.</li>
+        <li>Food and drink are not permitted inside the room.</li>
+    </ul>
+</div>
+
 </div>
       
 <div  class="heading-continer"> 
@@ -481,9 +669,6 @@ also remove the "asset" and replace with static
                 <div class="col-sm-6">
                     <div class="socials">
                         <a class="social-item" href="javascript:void(0)"><i class="ti-facebook"></i></a>
-                        <a class="social-item" href="javascript:void(0)"><i class="ti-google"></i></a>
-                        <a class="social-item" href="javascript:void(0)"><i class="ti-github"></i></a>
-                        <a class="social-item" href="javascript:void(0)"><i class="ti-twitter"></i></a>
                     </div>
                 </div>
             </div>
