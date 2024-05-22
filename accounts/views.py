@@ -79,7 +79,7 @@ def prayer_times_view(request, year=None, month=None):
     is_ramadan_today = is_ramadan(today)
     dst_today = is_dst(today, timezone_name)
     timezone_offset_today = -8 
-    today_times = PT.getPrayerAndIqamahTimes(today, (50.671016, -120.3637572, 40), timezone_offset_today, dst=dst)
+    today_times = PT.getPrayerAndIqamahTimes(today, (50.671016, -120.3637572, 40), timezone_offset_today, dst=dst_today)
     today_times = get_adjusted_times(today, today_times, is_ramadan_today)
 
     context = {

@@ -34,25 +34,7 @@ also remove the "asset" and replace with static
     <script src="{% static 'js/steller.js' %}"></script>
     <style>
   
-.top-bar {
-            background-color: #ffcc00;
-            color: #000;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-        }
-        .top-bar span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
+
 
         @keyframes fadeInGrow {
             0% {
@@ -165,9 +147,7 @@ also remove the "asset" and replace with static
         .important-announcements a {
             color: #0066cc;
         }
-        .important-announcements a:hover {
-            text-decoration: underline;
-        }
+      
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -311,38 +291,52 @@ also remove the "asset" and replace with static
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <div class="top-bar">
-        <span>This website is still under development</span>
-    </div>
+
 
 
 
     <!-- Page navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:#003C50;" data-spy="affix" data-offset-top="0">
-        <div class="container">   
-            <a class="navbar-brand" href="{% url 'index' %}">
-                <img src="{% static 'imgs/My project.png' %}" alt="MSA logo" style="height: 69px; box-shadow: none; border: none; filter: none;">  <!-- Corrected image here -->
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                                
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'prayer' %}">Prayer times </a>
-                    </li>
-                  
-                </ul>
-            </div>
-        </div>          
-    </nav>
+    <nav
+    class="navbar navbar-expand-lg navbar-light fixed-top"
+    style="background: #003c50"
+    data-spy="affix"
+    data-offset-top="0"
+  >
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img
+          src="{% static 'imgs/My project.png' %}"
+          alt="MSA logo"
+          style="height: 69px; box-shadow: none; border: none; filter: none"
+        />
+        <!-- Corrected image here -->
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto align-items-center">
+          <li class="">
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="active-class">
+            <a class="nav-link" href="{% url 'team' %}">About</a>
+          </li>
+          <li class="active-class">
+            <a class="nav-link" href="{% url 'prayer' %}">Prayer times </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <!-- End of page navibation -->
 
 
@@ -479,10 +473,6 @@ also remove the "asset" and replace with static
 				</div>
 			</div>
         </div>
-		
-		
-		
-		
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-8 mx-auto">
@@ -660,20 +650,32 @@ also remove the "asset" and replace with static
     <!-- Page Footer -->
     <footer class="page-footer">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-                    <p>Copyright (c) TRU MSA
-                        <script>document.write(new Date().getFullYear())</script>
-                    </p>
-                </div>
-                <div class="col-sm-6">
-                    <div class="socials">
-                        <a class="social-item" href="javascript:void(0)"><i class="ti-facebook"></i></a>
-                    </div>
-                </div>
+          <div class="row align-items-center">
+            <div class="col-sm-6">
+              <p>
+                Copyright TRU MSA
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+              </p>
             </div>
-        
-    </footer>
+            <div class="col-sm-6">
+              <div class="socials mt-4">
+                <a class="social-item" href="https://www.facebook.com/TRUMSA"
+                  ><i class="ti-facebook"></i
+                ></a>
+                <a class="social-item" href="https://youtube.com/@trumsa"
+                  ><i class="ti-youtube"></i
+                ></a>
+                <a class="social-item" href="https://www.instagram.com/tru_msa"
+                  ><i class="ti-instagram"></i
+                ></a>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     <!-- End of page footer -->
 
     <!-- core  -->

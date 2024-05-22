@@ -134,7 +134,7 @@ class PrayTimes():
         "maghrib_step": 5,  # Step size in minutes (e.g., 5:00, 5:05, 5:10, and 5:15 for step of 5 minutes
         "isha_step": 15,  # Step size in minutes (e.g., 5:00, 5:15, 5:30, and 5:45 for step of 15 minutes
 
-        "fajr_min_time": 33,  # Minimum time between sunset and Fajr iqamah in minutes
+        "fajr_min_time": 31,  # Minimum time between sunset and Fajr iqamah in minutes
         "asr_min_time": 7,  # Minimum time between Asr azan and iqamah in minutes
         "maghrib_min_time": 3,  # Minimum time between Maghrib azan and iqamah in minutes
         "isha_min_time": 7,  # Minimum time between Isha azan and iqamah in minutes
@@ -147,6 +147,10 @@ class PrayTimes():
         # Dhuhr settings
         "dhuhr_winter_iqamah": 740, # Iqamah time for Dhuhr during winter (no daylight savings) in minutes
         "dhuhr_summer_iqamah": 800, # Iqamah time for Dhuhr during summer (with daylight savings) in minutes
+        
+        # Jumuah settings
+        "jumuah_winter_iqamah": 765,  # Iqamah time for Dhuhr during winter (no daylight savings) in minutes
+        "jumuah_summer_iqamah": 840,  # Iqamah time for Dhuhr during summer (with daylight savings) in minutes
 
         # Ramadan settings
         "Ramadan_start": date(2024, 3, 10), # Replace with actual Ramadan's start date
@@ -493,6 +497,13 @@ class PrayTimes():
         dhuhr_iqamah = excel_time(0, self.iqamah_settings["dhuhr_winter_iqamah"])
         if dst:
             dhuhr_iqamah = excel_time(0, self.iqamah_settings["dhuhr_summer_iqamah"])
+            
+        if current_date.weekday()==4:
+            dhuhr_iqamah = excel_time(0, self.iqamah_settings["jumuah_winter_iqamah"])
+            if dst:
+                dhuhr_iqamah = excel_time(0, self.iqamah_settings["jumuah_summer_iqamah"])
+        
+        
         asr_iqamah = excel_time(0,
                                 max(self.iqamah_settings['asr_earliest_time'],
                                     self.iqamah_settings['asr_step'] * (1 + (
