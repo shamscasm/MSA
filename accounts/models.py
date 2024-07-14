@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-from django.db import models
-
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -42,3 +40,27 @@ class RamadanDate(models.Model):
     year = models.IntegerField(unique=True)
     start_date = models.DateField()
     end_date = models.DateField()
+
+
+
+# models.py
+from django.db import models
+
+class JummahPrayer(models.Model):
+    date = models.DateField()
+    time = models.TimeField()
+    location = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.date} - {self.location} at {self.time}"
+
+
+
+
+class Announcement(models.Model):
+    title = models.CharField(max_length=200)
+    date = models.DateField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title

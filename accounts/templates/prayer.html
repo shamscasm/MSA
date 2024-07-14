@@ -1,691 +1,479 @@
 {% load static %}
-<!-- REFERENCE FOR LOAD STATIC TAG FOR SRC
-        
- 
-
-also remove the "asset" and replace with static
-
-<img src="{% static 'my_app/example.jpg' %}" alt="My image">
- 
-     -->
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="TRU MSA">
-    <meta name="author" content="Shams Khan">
-    <title>TRU MSA</title>
-    <link rel="icon" href="{% static 'imgs/My project.png' %}" type="image/png">
-
-    <link rel="stylesheet" href="static/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + Steller main styles -->
-    <link rel="stylesheet" href="static/css/steller.css">
-
-    <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
-    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
-    <!-- bootstrap 3 affix -->
-    <script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
-
-    <!-- steller js -->
-    <script src="{% static 'js/steller.js' %}"></script>
-    <style>
-  
-
-
-        @keyframes fadeInGrow {
-            0% {
-                opacity: 0;
-                transform: scale(1);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-        }
-
-        .subtitle {
-            animation: fadeInGrow 2s forwards;
-            /* The animation will last for 2 seconds and will remain at the end state when completed */
-        }
-
-        @keyframes bounceIn {
-            0% {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-
-            50% {
-                transform: translateY(10px);
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-
-
-        .calendar-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .days-of-week {
-            display: flex;
-        }
-
-        .dates-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            /* 7 days in a week */
-            gap: 5px;
-        }
-
-        .date {
-            padding: 10px;
-            text-align: center;
-            background-color: #f0f0f0;
-        }
-
-        .date.today {
-            background-color: #ff00ff;
-            /* Highlight color for today */
-        }
-
-        .date.not-current-month {
-            background-color: #e0e0e0;
-            /* Different color for days not in the current month */
-        }
-   
-      
-        h1, h2, h3 {
-            color: #003366;
-        }
-        .schedule-table-container {
-            overflow-x: auto;
-        }
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            min-width: 600px;
-        }
-        .schedule-table th, .schedule-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .schedule-table th {
-            background-color: #f2f2f2;
-        }
-        .schedule-table td {
-            background-color: #f9f9f9;
-        }
-        .important-announcements {
-            margin-top: 20px;
-        }
-        .important-announcements ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .important-announcements li {
-            margin-bottom: 10px;
-        }
-        .important-announcements a {
-            color: #0066cc;
-        }
-      
-        @media (max-width: 600px) {
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="TRU MSA">
+        <meta name="author" content="Shams Khan">
+        <title>TRU MSA</title>
+        <link rel="icon" href="{% static 'imgs/My project.png' %}" type="image/png">
+        <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+        <!-- Bootstrap + Steller main styles -->
+        <link rel="stylesheet" href="{% static 'css/steller.css' %}">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+        <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+        <!-- bootstrap 3 affix -->
+        <script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
+        <!-- steller js -->
+        <script src="{% static 'js/steller.js' %}"></script>
+        <style>
             body {
-                padding: 10px;
+                font-family: 'Nunito', sans-serif;
+                color: #495057;
+                background-color: #f8f9fa;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
             }
-            .schedule-table th, .schedule-table td {
-                font-size: 14px;
-                padding: 6px;
+            a {
+                text-decoration: none;
             }
-        }
-
-        .next-prayer-info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .prayer-times-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .prayer-times-table {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            background: #003C50;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .table-row {
-            display: flex;
-            justify-content: space-between;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-bottom: 1px solid #eeeeee;
-        }
-
-        .table-row:last-child {
-            border-radius: 0 0 8px 8px;
-            border-bottom: none;
-        }
-
-        h3 {
-            text-align: center;
-            color: #333333;
-            margin-bottom: 20px;
-        }
-        .prayer-times-container {
-            max-width: 800px;
-            /* Adjusted for potentially wider table */
-            margin: auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
-            /* Ensure table is scrollable on small screens */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            text-align: left;
-            padding: 10px;
-        }
-
-        th {
-            background: #003C50;
-            color: #ffffff;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #eaeaea;
-            /* Highlight row on hover */
-        }
-
-        h3 {
-            text-align: center;
-            color: #333333;
-            margin-bottom: 20px;
-
-
-            .current-day {
-                background-color: #004080;
-                /* Or any color you prefer */
+            .navbar {
+                background-color: #003c50;
+            }
+            .navbar .nav-link,
+            .navbar-brand,
+            .active-class {
+                color: #ffffff !important;
+                text-decoration: none;
+            }
+            .navbar .nav-link:hover,
+            .navbar-brand:hover,
+            .active-class:hover {
+                text-decoration: none;
+            }
+            .navbar-toggler {
+                border-color: transparent;
+                background-color: #3A819E;
+            }
+            .dropdown-menu {
+                left: auto !important;
+                right: 0 !important;
+            }
+            .page-footer {
+                background-color: #003c50;
                 color: white;
+                padding: 20px 0;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+                margin-top: 20px;
             }
-        }
-            caption {
-                text-align: center;
-                margin-bottom: 10px; /* Adjust as needed */
-                font-weight: bold;
-                font-size: larger; /* Adjust size as needed */
+            .page-footer p {
+                margin: 0;
             }
-        
-            th {
-                text-align: center; /* Center aligns header text */
+            .socials .social-item {
+                color: white;
+                margin: 0 10px;
+                font-size: 1.5rem;
             }
-        
-            .table-header th {
-                border: 1px solid lightgrey;
-            }
-
-            .instagram-embed-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
-            .instagram-embed-container h2 {
+            .next-prayer-info {
                 text-align: center;
                 margin-bottom: 20px;
             }
-            .heading-continer {
+            .prayer-times-container {
+                max-width: 800px;
+                margin: auto;
+                padding: 20px;
+                background: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+            }
+            .prayer-times-table {
                 display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 31px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .table-header {
+                display: flex;
+                justify-content: space-between;
+                background: #003C50;
+                color: #ffffff;
+                padding: 10px;
+                border-radius: 8px 8px 0 0;
+            }
+            .table-row {
+                display: flex;
+                justify-content: space-between;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-bottom: 1px solid #eeeeee;
+            }
+            .table-row:last-child {
+                border-radius: 0 0 8px 8px;
+                border-bottom: none;
+            }
+            .schedule-table-container {
+                overflow-x: auto;
+            }
+            .schedule-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                min-width: 600px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+            .schedule-table th,
+            .schedule-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            .schedule-table th {
+                background-color: #003C50;
+                color: #ffffff;
+            }
+            .schedule-table td {
+                background-color: #f9f9f9;
+            }
+            .important-announcements {
+                margin-top: 20px;
+            }
+            .important-announcements ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            .important-announcements li {
+                margin-bottom: 10px;
+            }
+            .important-announcements a {
+                color: #0066cc;
             }
 
-
+            .card-title {
+                color: #3A819E;
+            }
+ 
+            
+            @media (max-width: 600px) {
+                body {
+                    padding: 10px;
+                }
+                .schedule-table th,
+                .schedule-table td {
+                    font-size: 14px;
+                    padding: 6px;
+                }
+            }
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         </style>
-   
-</head>
+    </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-
-
-
-
-    <!-- Page navigation -->
-    <nav
-    class="navbar navbar-expand-lg navbar-light fixed-top"
-    style="background: #003c50"
-    data-spy="affix"
-    data-offset-top="0"
-  >
+<!-- Page navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'index' %}">
-        <img
-          src="{% static 'imgs/My project.png' %}"
-          alt="MSA logo"
-          style="height: 69px; box-shadow: none; border: none; filter: none"
-        />
-        <!-- Corrected image here -->
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto align-items-center">
-          <li class="">
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="active-class">
-            <a class="nav-link" href="{% url 'team' %}">About</a>
-          </li>
-          <li class="active-class">
-            <a class="nav-link" href="{% url 'prayer' %}">Prayer times </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-    <!-- End of page navibation -->
-
-
-    <br> <br> <br> <br>
-
-    {% if next_prayer %}
-    <div class="next-prayer-info">
-        <h4>Upcoming Time: {{ next_prayer.name|title }} - {{ next_prayer.time }}</h4>
-        <p>Iqamah at TRU (OM 2479): {{ next_prayer.iqamah }}</p>
-    </div>
-    {% endif %}
-
-
-    <div class="row">
-
-        <div class="prayer-times-container col-md-8">
-            <h3 >IQAMAH TIMES FOR TRU MUSALLA (OM 2494 & 2498) 
-            </h3>
-            <h3>Today's Prayer Times</h3>
-            <div class="prayer-times-table">
-                <div class="table-header">
-                    <div>Prayer</div>
-                    <div>Adhan Time</div>
-                    <div>Iqamah Time</div>
-                </div>
-                <div class="table-row">
-                    <div>Fajr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <div>
-                        {% if is_ramadan_today %}
-                            {{ today_times.imsak }}
-                        {% else %}
-                            {{ today_times.fajr }}
-                        {% endif %}
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'imgs/My project.png' %}" alt="MSA logo" class="img-fluid" style="height: 65px; box-shadow: none; border: none; filter: none" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'team' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prayer times</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'prayer' %}">Fard Salah times</a>
+                        <a class="dropdown-item" href="{% url 'jummah_prayer' %}">Jummah times</a>
                     </div>
-                    <div>{{ today_times.fajr_iqamah }}</div>
-                </div>
-                <!-- Repeat for other prayer times -->
-                <div class="table-row">
-                    <div>Sunrise</div>
-                    <div>{{ today_times.sunrise }}</div>
-                    <div>-----</div>
-                </div>
-
-                <div class="table-row">
-                    <div>Dhuhr &nbsp;&nbsp;&nbsp;</div>
-                    <div>{{ today_times.dhuhr}}</div>
-                    <div>{{ today_times.dhuhr_iqamah}}</div>
-                </div>
-                <div class="table-row">
-                    <div>Asr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <div>{{ today_times.asr }}</div>
-                    <div>{{ today_times.asr_iqamah }}</div>
-                </div>
-
-                <div class="table-row">
-                    <div>Maghrib </div>
-                    <div>{{ today_times.maghrib }}</div>
-                    <div>{{ today_times.maghrib_iqamah }}</div>
-                </div>
-
-
-                <div class="table-row">
-                    <div>Isha &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <div>{{ today_times.isha }}</div>
-                    <div>{{ today_times.isha_iqamah }}</div>
-                </div>
-				
-				
-			    <!-- ... other prayer times ... -->			
-							
-            </div>
-			<br> <br>
-			<h3>Monthly Prayer Times</h3>
-
-			 <!-- Button to toggle the collapsible element -->
-			 <!-- Container for the button to center it horizontally -->
-			<div style="display: flex; justify-content: center; margin-bottom: 20px;">
-				<!-- Updated button with a more modern appearance -->
-				<button class="btn btn-outline-info btn-lg" type="button" data-toggle="collapse" data-target="#monthlyPrayerTimes" aria-expanded="false" aria-controls="monthlyPrayerTimes">
-					View the Monthly Prayer Times
-				</button>
-			</div>
-
-			<!-- Collapsible container for the table -->
-			<div class="collapse" id="monthlyPrayerTimes">
-				<div class="prayer-times-container">
-					<h3>Monthly Prayer Times for {{ month_name }} {{ year }}</h3>
-					<table>						
-						<thead>
-							<tr>
-								<th rowspan="2" style="border: 1px solid lightgrey;">Date</th>
-								<th rowspan="2" style="border: 1px solid lightgrey;"> Day</th>
-								 <th colspan="3" style="border: 1px solid lightgrey;">Fajr</th>  
-								<th colspan="2" style="border: 1px solid lightgrey;"> Dhuhr</th>
-								<th colspan="2" style="border: 1px solid lightgrey;">Asr</th>
-								<th colspan="2" style="border: 1px solid lightgrey;">Maghreb</th>
-								<th colspan="2" style="border: 1px solid lightgrey;">Isha</th>
-							</tr>
-							<tr style="border: 1px solid lightgrey;">
-								<th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Sunrise</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
-								<th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for day in calendar_data %}
-							<tr
-								style="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}background-color:#bbf6f3; color: black;{% endif %}">
-								<td>{{ day.date|date:"d" }}</td>
-								<td>{{ day.date|date:"l" }}</td>
-								<td>{{ day.times.fajr }}</td>
-								<td>{{ day.times.fajr_iqamah }}</td>
-								<td>{{ day.times.sunrise }}</td>
-								<td>{{ day.times.dhuhr }}</td>
-								<td>{{ day.times.dhuhr_iqamah }}</td>
-								<td>{{ day.times.asr }}</td>
-								<td>{{ day.times.asr_iqamah }}</td>
-								<td>{{ day.times.maghrib }}</td>
-								<td>{{ day.times.maghrib_iqamah }}</td>
-								<td>{{ day.times.isha }}</td>
-								<td>{{ day.times.isha_iqamah }}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://forms.gle/4fnLHrbCsi3hUFMi6">Subscribe</a>
+                </li>
+            </ul>
         </div>
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="card bg-light">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Guideline for TRU Musalla (Multifaith room)</h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">There is no designated imam. Whoever is present at the times
-                                    above may pray together.</li>
-                                <li class="list-group-item">OM 2498 is a multi-faith prayer space that is generally
-                                    available for Muslim students to use.</li>
-                                <li class="list-group-item">If the room is locked or booked by another faith group,
-                                    please refrain from accessing it at those times.</li>
-                                <li class="list-group-item">Please, no knocking on the door.</li>
-                                <li class="list-group-item">Private area (OM 2494) with separate entrance is available
-                                    for sisters to use, behind the dividing walls.</li>
-                                <li class="list-group-item">Please keep the prayer space clean and tidy.</li>
-                                <li class="list-group-item">Please do not bring food or leave water bottles in this
-                                    room.</li>
-                                <li class="list-group-item">Please do not remove any Qurans or supplies from the room.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+    </div>
+</nav>
+<!-- End of page navigation -->
+
+
+<br><br><br><br>
+ 
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" id="hadith-card">
+                <!-- Hadith content will be injected here by JavaScript -->
+                <div class="card-body">
+                    <h5 class="card-title">Loading Hadith...</h5>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div  class="heading-continer"> 
+ 
+<br> 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('https://random-hadith-generator.vercel.app/bukhari/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const hadithData = data.data;
+                const hadithCard = document.getElementById('hadith-card');
+                hadithCard.innerHTML = `
+                    <div class="card-body">
+                        <center> <h3 class="card-title">Hadith of the Day</h3> </center>
+                        <p class="card-text"><b>${hadithData.header}</b> ${hadithData.hadith_english}</p>
+                        <p class="card-text text-muted">Source: ${hadithData.book}, ${hadithData.chapterName} - ${hadithData.refno}</p>
+                    </div>
+                `;
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+                const hadithCard = document.getElementById('hadith-card');
+                hadithCard.innerHTML = `
+                    <div class="card-body">
+                        <center> <h3 class="card-title">Hadith of the Day</h3> </center>
+                        <p class="card-text"><b>Sorry, an error occurred while fetching the Hadith. Please try again later.</b></p>
+                    </div>
+                `;
+            });
+    });
+</script>
 
-        <h1>TRU  Musalla Location </h1>
+
+
+
+
+{% if next_prayer %}
+<div class="next-prayer-info">
+    <h4>Upcoming Time: {{ next_prayer.name|title }} - {{ next_prayer.time }}</h4>
+    <p>Iqamah at TRU (OM 2479): {{ next_prayer.iqamah }}</p>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="prayer-times-container col-md-8">
+        <h3>IQAMAH TIMES FOR TRU MUSALLA (OM 2494 & 2498)</h3>
+        <br>
+        <h3>Today's Prayer Times - {{ today|date:"F d, Y" }}</h3>
+        <div class="prayer-times-table">
+            <div class="table-header">
+                <div>Prayer</div>
+                <div style="margin-left:20px">Adhan Time</div>
+                <div>Iqamah Time</div>
+            </div>
+            <div class="table-row">
+                <div>Fajr</div>
+                <div style="margin-left:32px">
+                    {% if is_ramadan_today %}
+                    {{ today_times.imsak }}
+                    {% else %}
+                    {{ today_times.fajr }}
+                    {% endif %}
+                </div>
+                <div>{{ today_times.fajr_iqamah }}</div>
+            </div>
+            <div class="table-row">
+                <div>Sunrise</div>
+                <div style="margin-left:0px">{{ today_times.sunrise }}</div>
+                <div>-----</div>
+            </div>
+            <div class="table-row">
+                <div>Dhuhr</div>
+                <div style="margin-left:14px">{{ today_times.dhuhr }}</div>
+                <div>{{ today_times.dhuhr_iqamah }}</div>
+            </div>
+            <div class="table-row">
+                <div>Asr</div>
+                <div style="margin-left:33px">{{ today_times.asr }}</div>
+                <div>{{ today_times.asr_iqamah }}</div>
+            </div>
+            <div class="table-row">
+                <div>Maghrib</div>
+                <div style="margin-left:1px">{{ today_times.maghrib }}</div>
+                <div>{{ today_times.maghrib_iqamah }}</div>
+            </div>
+            <div class="table-row">
+                <div>Isha</div>
+                <div style="margin-left:30px">{{ today_times.isha }}</div>
+                <div>{{ today_times.isha_iqamah }}</div>
+            </div>
+        </div>
+        <br><br>
+        <center>
+            <h3>Monthly Prayer Times</h3>
+        </center>
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <button class="btn btn-outline-info btn-lg" type="button" data-toggle="collapse" data-target="#monthlyPrayerTimes" aria-expanded="false" aria-controls="monthlyPrayerTimes">
+                View the Monthly Prayer Times
+            </button>
+        </div>
+
+        <div class="collapse" id="monthlyPrayerTimes">
+            <div class="prayer-times-container">
+                <h3>Monthly Prayer Times for {{ month_name }} {{ year }}</h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" style="border: 1px solid lightgrey;">Date</th>
+                            <th rowspan="2" style="border: 1px solid lightgrey;"> Day</th>
+                            <th colspan="3" style="border: 1px solid lightgrey;">Fajr</th>
+                            <th colspan="2" style="border: 1px solid lightgrey;"> Dhuhr</th>
+                            <th colspan="2" style="border: 1px solid lightgrey;">Asr</th>
+                            <th colspan="2" style="border: 1px solid lightgrey;">Maghreb</th>
+                            <th colspan="2" style="border: 1px solid lightgrey;">Isha</th>
+                        </tr>
+                        <tr style="border: 1px solid lightgrey;">
+                            <th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Sunrise</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Athan</th>
+                            <th class="subheader" style="border: 1px solid lightgrey;">Iqamah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for day in calendar_data %}
+                        <tr class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-row{% endif %}">
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.date|date:"d" }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.date|date:"l" }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.fajr }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.fajr_iqamah }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.sunrise }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.dhuhr }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.dhuhr_iqamah }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.asr }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.asr_iqamah }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.maghrib }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.maghrib_iqamah }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.isha }}</td>
+                            <td class="{% if day.date.day == today.day and day.date.month == today.month and day.date.year == today.year %}current-day-cell{% endif %}">{{ day.times.isha_iqamah }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
-        <div class="instagram-embed-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/l1Z3be4F_cU?si=dEzPqoCDXWMY7IKG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
-  <!-- <img src="{% static 'imgs/img-jummah.jpeg' %}" alt="MSA logo" style=" box-shadow: none; border: none; filter: none;">  Corrected image here -->
-  <section>
-   
-
-
-<h1>TRU MSA – Friday Prayer Schedule</h1>
-<h2>Summer 2024 Semester</h2>
-
-<div class="schedule-table-container">
-    <table class="schedule-table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Location</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>May 3, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
-            </tr>
-            <tr>
-                <td>May 10, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>May 17, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>May 24, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>May 31, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>June 7, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
-            </tr>
-            <tr>
-                <td>June 14, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>June 21, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
-            </tr>
-            <tr>
-                <td>June 28, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>July 5, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>July 12, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
-            </tr>
-            <tr>
-                <td>July 19, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>July 26, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>August 2, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>August 9, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>August 16, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>August 23, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Upper Level – Gym Floor)</td>
-            </tr>
-            <tr>
-                <td>August 30, 2024</td>
-                <td>2:00pm</td>
-                <td>TRU Gymnasium (Lower Level – Fitness Studio)</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="important-announcements">
-    <h3>Important Announcements & Protocols</h3>
-    <ul>
-        <li>Please bring your own prayer mat.</li>
-        <li>Please make wudu prior to arriving at the venues. Ablution facilities are also available in Old Main first level washrooms by Student Street.</li>
-        <li>Please place your shoes neatly outside of the room.</li>
-        <li>Coned area in the back is reserved for sisters.</li>
-        <li>Please do not crowd the entrance after the prayer.</li>
-        <li>For venue locations, please refer to <a href="https://www.tru.ca/map.html">campus map</a>.</li>
-        <li>Food and drink are not permitted inside the room.</li>
-    </ul>
-</div>
-
-</div>
-      
-<div  class="heading-continer"> 
-
-    <h1>JUMMAH  SALAH Location At  TRU</h1>
-</div>
-
-    <div class="instagram-embed-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/myB1IeHYhvM?si=KrUzOMmkZ_7aOEr2&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Guideline for TRU Musalla (Multifaith room)</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">There is no designated imam. Whoever is present at the times above may pray together.</li>
+                            <li class="list-group-item">OM 2498 is a multi-faith prayer space that is generally available for Muslim students to use.</li>
+                            <li class="list-group-item">If the room is locked or booked by another faith group, please refrain from accessing it at those times.</li>
+                            <li class="list-group-item">Please, no knocking on the door.</li>
+                            <li class="list-group-item">Private area (OM 2494) with separate entrance is available for sisters to use, behind the dividing walls.</li>
+                            <li class="list-group-item">Please keep the prayer space clean and tidy.</li>
+                            <li class="list-group-item">Please do not bring food or leave water bottles in this room.</li>
+                            <li class="list-group-item">Please do not remove any Qurans or supplies from the room.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
+<br>
+<center>
+    <h3>Jummah Prayer Times</h3>
+</center>
+<div style="display: flex; justify-content: center; margin-bottom: 20px;">
+    <a class="btn btn-outline-info btn-lg" href="{% url 'jummah_prayer' %}">
+        View the JUMMAH Prayer Times
+    </a>
+</div>
 
-    
-    <!-- Page Footer -->
-    <footer class="page-footer">
-        <div class="container">
-          <div class="row align-items-center">
+<div class="heading-container">
+    <h2><b>Find Prayer Room @ TRU-OM<b></h2>
+</div>
+
+<div class="row">
+    <div class="col-md-6 instagram-embed-container" style="padding-right: 15px;">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/l1Z3be4F_cU?si=dEzPqoCDXWMY7IKG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 instagram-embed-container" style="padding-left: 15px;">
+        <iframe
+            src="https://snazzymaps.com/embed/571406"
+            width="100%"
+            height="315"
+            frameborder="0"
+            style="border:0"
+            allowfullscreen=""
+            aria-hidden="false"
+            tabindex="0">
+        </iframe>
+    </div>
+</div>
+
+<br>
+
+<!-- Page Footer -->
+<footer class="page-footer">
+    <div class="container">
+        <div class="row align-items-center">
             <div class="col-sm-6">
-              <p>
-                Copyright TRU MSA
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-              </p>
+                <p>
+                    Copyright TRU MSA
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                </p>
             </div>
             <div class="col-sm-6">
-              <div class="socials mt-4">
-                <a class="social-item" href="https://www.facebook.com/TRUMSA"
-                  ><i class="ti-facebook"></i
-                ></a>
-                <a class="social-item" href="https://youtube.com/@trumsa"
-                  ><i class="ti-youtube"></i
-                ></a>
-                <a class="social-item" href="https://www.instagram.com/tru_msa"
-                  ><i class="ti-instagram"></i
-                ></a>
-              
-              </div>
+                <div class="socials mt-4">
+                    <a class="social-item" href="https://www.facebook.com/TRUMSA"><i class="ti-facebook"></i></a>
+                    <a class="social-item" href="https://youtube.com/@trumsa"><i class="ti-youtube"></i></a>
+                    <a class="social-item" href="https://www.instagram.com/tru_msa"><i class="ti-instagram"></i></a>
+                    <a class="social-item" href="https://www.linkedin.com/company/trumsa/"><i class="ti-linkedin"></i></a>
+                </div>
             </div>
-          </div>
         </div>
-      </footer>
-    <!-- End of page footer -->
+    </div>
+</footer>
+<!-- End of page footer -->
 
-    <!-- core  -->
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        });
 
-
-
-
-
-
-
+        document.querySelectorAll(".custom-card").forEach((card) => {
+            observer.observe(card);
+        });
+    });
+</script>
 </body>
-
 </html>

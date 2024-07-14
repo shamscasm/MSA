@@ -4245,6 +4245,36 @@ input[type="button"].btn-block {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
+.current-day-row {
+  background-color: #bbf6f3;
+  color: black;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.schedule-table th {
+  background-color: #003C50;
+  color: #ffffff;
+}
+
+.schedule-table td {
+  background-color: #f9f9f9;
+}
+
+.schedule-table .current-day-cell {
+  background-color: #bbf6f3;
+  color: black;
+}
+
+.btn-outline-info:hover {
+  background-color: #002d3a;
+  color: white;
+}
 
 .custom-file-label::after {
   position: absolute;

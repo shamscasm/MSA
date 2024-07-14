@@ -5,7 +5,7 @@ from KamloopsPrayersTiming import *  # Assuming the PrayTimes class is in Kamloo
 
 from django.http import JsonResponse
 import calendar
-from .models import Contact , IqamahAdjustment, RamadanDate
+from .models import Contact , IqamahAdjustment, RamadanDate ,JummahPrayer, Contact, Announcement
 
 from datetime import datetime, time
 import calendar
@@ -13,23 +13,26 @@ from django.shortcuts import render
  
  
 # view to generate the home page
+ 
 
 def index(request):
-	if request.method == 'POST':
-		# Create an instance of your model and save the form data
-		email = request.POST.get('email')
-		name = request.POST.get('name')
-		message = request.POST.get('message')
-		
-		# Assuming your model is named `Contact` and has `email`, `name`, and `message` fields
-		contact = Contact(email=email, name=name, message=message)
-		contact.save()
-		
-		# Redirect or send a success response
-		return JsonResponse({'success': 'Message sent successfully!'})
-		 
-	# Render index page for GET requests
-	return render(request, 'index.html')
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        name = request.POST.get('name')
+        message = request.POST.get('message')
+
+        # Assuming your model is named `Contact` and has `email`, `name`, and `message` fields
+        contact = Contact(email=email, name=name, message=message)
+        contact.save()
+
+        # Redirect or send a success response
+        return JsonResponse({'success': 'Message sent successfully!'})
+
+    # Fetch announcements to pass to the template
+    announcements = Announcement.objects.all().order_by('-date')
+
+    # Render index page for GET requests
+    return render(request, 'index.html', {'announcements': announcements})
 
 
 
@@ -78,7 +81,7 @@ def prayer_times_view(request, year=None, month=None):
     # Adjust today's times
     is_ramadan_today = is_ramadan(today)
     dst_today = is_dst(today, timezone_name)
-    timezone_offset_today = -8 
+    timezone_offset_today = -8
     today_times = PT.getPrayerAndIqamahTimes(today, (50.671016, -120.3637572, 40), timezone_offset_today, dst=dst_today)
     today_times = get_adjusted_times(today, today_times, is_ramadan_today)
 
@@ -113,3 +116,7 @@ def team(request):
 	} 
 	return render(request,'team.html', context)
 
+def jummah_prayer_view(request):
+    # Fetch the next upcoming Jummah prayer
+    next_jummah = JummahPrayer.objects.filter(date__gte=date.today()).order_by('date').first()
+    return render(request, 'jummah_prayer.html', {'next_jummah': next_jummah})

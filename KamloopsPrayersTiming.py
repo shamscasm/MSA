@@ -3,8 +3,7 @@
 import math
 import re
 from datetime import datetime, timedelta, date
-import pytz
-
+import pytz 
 
 '''
 --------------------- Copyright Block ----------------------

@@ -1,547 +1,527 @@
 {% load static %}
-<!-- REFERENCE FOR LOAD STATIC TAG FOR SRC
-        
- 
-
-also remove the "asset" and replace with static
-
-<img src="{% static 'my_app/example.jpg' %}" alt="My image">
- 
-     -->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="TRU MSA" />
-    <meta name="author" content="Shams Khan" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="TRU MSA">
+    <meta name="author" content="Shams Khan">
     <title>TRU MSA</title>
-    <link
-      rel="icon"
-      href="{% static 'imgs/My project.png' %}"
-      type="image/png"
-    />
+    <link rel="icon" href="{% static 'imgs/My project.png' %}" type="image/png">
 
-    <link
-      rel="stylesheet"
-      href="static/vendors/themify-icons/css/themify-icons.css"
-    />
+    <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
     <!-- Bootstrap + Steller main styles -->
-    <link rel="stylesheet" href="static/css/steller.css" />
+    <link rel="stylesheet" href="{% static 'css/steller.css' %}">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <style>
-      @media (max-width: 768px) {
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #495057;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .navbar {
+            background-color: #003c50;
+        }
+
+        .navbar .nav-link,
+        .navbar-brand,
+        .active-class {
+            color: #ffffff !important;
+            text-decoration: none;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar-brand:hover,
+        .active-class:hover {
+            text-decoration: none;
+        }
+
+        .navbar-toggler {
+            border-color: transparent;
+            background-color: #3A819E;
+        }
+
         .header {
-          padding-top: 100px; /* Adjust padding-top for smaller screens */
+            background-image: url('{% static 'imgs/msa_pic (1).jpg' %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
         }
-      }
-      @media (max-width: 768px) {
-        .header .container .infos .title {
-          font-size: 40px; /* Adjust font size for smaller screens */
+
+        .header .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
-      }
-      @keyframes fadeInGrow {
-        0% {
-          opacity: 0;
-          transform: scale(1);
+
+        .header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
         }
-        100% {
-          opacity: 1;
-          transform: scale(1.1);
+
+        .header .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
-      }
 
-      .subtitle {
-        animation: fadeInGrow 2s forwards; /* The animation will last for 2 seconds and will remain at the end state when completed */
-      }
-
-      @keyframes bounceIn {
-        0% {
-          transform: translateY(-50px);
-          opacity: 0;
+        .button {
+            padding: 10px 20px;
+            background-color: #003c50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        50% {
-          transform: translateY(10px);
+
+        .button:hover {
+            background-color: #002d3a;
         }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
+
+        @media (max-width: 768px) {
+            .header {
+                padding-top: 150px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .header .title {
+                font-size: 2rem;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .header .subtitle {
+                font-size: 1.2rem;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .header .buttons {
+                justify-content: center;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .navbar .container {
+                padding: 0 15px;
+            }
+
+            .navbar {
+                padding: 10px 15px;
+            }
         }
-      }
-      .active-class {
-        color: #fff;
-        /* background-color: #003C50; */
-        font-size: 14px;
-        font-weight: bold;
-        margin: 0 10px;
-        -webkit-transition: all 0.3s;
-        transition: all 0.3s;
-      }
-      
-      .flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 100px 0;
-      }
-      .about-section {
-        background-image: linear-gradient(
-            rgba(255, 255, 255, 0.8),
-            rgba(255, 255, 255, 0.8)
-          ),
-          url("your_new_image_path_here");
-        background-size: cover;
-        background-position: center center;
-        padding: 50px 0;
-      }
-      .about-header {
-        margin-top: 100px;
-      }
-      .about-header h2 {
-        color: #003c50;
-        font-size: 3.5rem;
-        margin-bottom: 15px;
-        animation: fadeInUp 1s ease-out;
-      }
 
-      .about-header p {
-        font-size: 1.2rem;
-        color: #555;
-        animation: fadeInUp 1.5s ease-out;
-      }
-
-      .about-content p,
-      .about-highlight p,
-      .about-footer {
-        color: #333;
-        line-height: 1.6;
-        margin-top: 15px;
-      }
-
-      .about-highlight {
-        margin: 30px 0;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-left: 5px solid #003c50;
-      }
-
-      .about-highlight h3 {
-        color: #003c50;
-      }
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
-      }
-      .about-footer {
-        font-weight: bold;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
+        .about-section {
+            padding: 50px 20px;
+            text-align: center;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            color: #003c50;
+            margin-bottom: 1rem;
         }
-      }
 
-      /* Initial state */
-      .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
+        .about-section p {
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.5;
+        }
 
-      /* State when element is in viewport */
-      .animate-on-scroll.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 0;
+        }
+
+        .custom-card {
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .custom-card:hover {
+            background-color: #003c50;
+            color: #ffffff;
+        }
+
+        .custom-card:hover i,
+        .custom-card:hover h5,
+        .custom-card:hover p {
+            color: #ffffff;
+        }
+
+        .custom-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .custom-card {
+                margin-bottom: 30px;
+            }
+        }
+
+        .page-footer {
+            background-color: #003c50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .page-footer p {
+            margin: 0;
+        }
+
+        .socials .social-item {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .visible {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .header .infos {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .header .img-holder {
+            animation: slideInRight 1s ease-out forwards;
+        }
     </style>
-  </head>
-  <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     <!-- Page navigation -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top"
-      style="background: #003c50"
-      data-spy="affix"
-      data-offset-top="0"
-    >
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">
-          <img
-            src="{% static 'imgs/My project.png' %}"
-            alt="MSA logo"
-            style="height: 69px; box-shadow: none; border: none; filter: none"
-          />
-          <!-- Corrected image here -->
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto align-items-center">
-            <li class="">
-              <a class="active-class" href="{% url 'index' %}">Home</a>
-            </li>
-            <li class="active-class">
-              <a class="nav-link" href="{% url 'team' %}">About</a>
-            </li>
-            <li class="active-class">
-              <a class="nav-link" href="{% url 'prayer' %}">Prayer times </a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'imgs/My project.png' %}" alt="MSA logo" class="img-fluid" style="height: 65px; box-shadow: none; border: none; filter: none">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'team' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prayer times</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'prayer' %}">Fard Salah times</a>
+                            <a class="dropdown-item" href="{% url 'jummah_prayer' %}">Jummah times</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://forms.gle/4fnLHrbCsi3hUFMi6">Subscribe</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
-    <!-- End of page navibation -->
+    <!-- End of page navigation -->
 
     <!-- Main header -->
-    <header
-      class="header position-relative"
-      id="home"
-      style="
-        background-image: url('static/imgs/msa_pic (1).jpg');
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        width: 100%;
-      "
-    >
-      <!-- Overlay div -->
-      <div class="overlay"></div>
-
-      <div class="container">
-        <div class="flex">
-          <div class="col-md-6 col-sm-12 order-md-1 order-sm-2">
-            <div class="infos">
-              <h6 class="subtitle text-white pt-3 ml-4">أهلاً وسهلاً</h6>
-              <br><br>
-              <p class="title" style="animation: bounceIn 1s; color: white; font-size: 50px;">
-                The Muslim Student's Association at TRU
-              </p>
-              <br><br>
-              <p class="py-2" style="animation: bounceIn 1s; color: white">
-                An organization for helping Muslim students at TRU
-              </p>
-
-              <div class="buttons" style="margin-top: 10px; margin-left: 10px;">
-                <a href="#contact">
-                    <button class="btn btn-primary rounded" style="margin-right: 10px;">Contact us</button>
-                </a>
-                <a class="btn btn-primary rounded" href="{% url 'prayer' %}">Prayer Times</a>
+    <header class="header">
+        <div class="container">
+            <div class="flex">
+                <div class="col-md-6 col-sm-12 order-md-1 order-sm-2 animate-on-scroll">
+                    <div class="infos">
+                        <h6 class="subtitle text-white pt-3 ml-4" style="margin-top:20px">أهلاً وسهلاً</h6>
+                        <br><br>
+                        <p class="title" style="color: white; font-size: 50px; margin-left: 19px;">
+                            The Muslim Student's Association at TRU
+                        </p>
+                        <br>
+                        <p class="py-2" style="color: white ; margin-left: 19px;">
+                            An organization for helping Muslim students at TRU
+                        </p>
+                        <div class="buttons" style="margin-top: 10px;">
+                            <a href="#contact">
+                                <button class="btn btn-primary rounded" style="margin-right: 10px; margin-left: 19px;">Contact us</button>
+                            </a>
+                            <a class="btn btn-primary rounded" href="{% url 'prayer' %}">Prayer Times</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 order-md-2 order-sm-1 text-center animate-on-scroll">
+                    <div class="img-holder pt-md-3 pt-sm-0">
+                        <img src="{% static 'imgs/My project.png' %}" alt="MSA LOGO" class="img-fluid mx-auto d-block" style="max-width: 90%; height: auto">
+                    </div>
+                </div>
             </div>
-            
-            
-              
-            </div>
-          </div>
-          ``
-          <div class="col-md-6 col-sm-12 order-md-2 order-sm-1 text-center">
-            <div class="img-holder pt-md-3 pt-sm-0">
-              <img
-                src="{% static 'imgs/My project.png' %}"
-                alt="MSA LOGO"
-                class="img-fluid mx-auto d-block"
-                style="max-width: 90%; height: auto"
-              />
-            </div>
-          </div>
         </div>
-      </div>
     </header>
 
-    <br />
-    <br />
+    <br><br>
+
+    <!-- Announcements Section -->
+    <section id="announcements" class="section">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center" style="color: #003c50;">Announcements</h2>
+            <div class="accordion" id="announcementsAccordion">
+                {% for announcement in announcements %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ announcement.id }}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ announcement.id }}" aria-expanded="true" aria-controls="collapse{{ announcement.id }}">
+                                {{ announcement.title }}
+                            </button>
+                        </h5>
+                        <p>{{ announcement.date }}</p>
+                    </div>
+                    <div id="collapse{{ announcement.id }}" class="collapse" aria-labelledby="heading{{ announcement.id }}" data-parent="#announcementsAccordion">
+                        <div class="card-body">
+                            {{ announcement.description }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End of Announcements Section -->
+
     <!-- About section -->
     <section id="about" class="about-section">
-      <div class="container">
-        <div class="about-header animate-on-scroll">
-          <u><h2>Welcome to MSA TRU</h2></u>
-
-          <p class="about-footer">
-            Ready to get started? Explore the rest of our website to learn more
-            about MSA TRU and how you can become part of our dynamic community.
-            We look forward to welcoming you!
-          </p>
+        <div class="container">
+            <div class="about-header animate-on-scroll">
+                <h1 style="color:#003c50;"> <b>Welcome to MSA TRU </b></h1>
+                <p class="about-footer">
+                    Ready to get started? Explore the rest of our website to learn more about MSA TRU and how you can become part of our dynamic community. We look forward to welcoming you!
+                </p>
+            </div>
         </div>
-      </div>
     </section>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        });
-
-        document.querySelectorAll(".animate-on-scroll").forEach((section) => {
-          observer.observe(section);
-        });
-      });
-    </script>
 
     <!-- Service section -->
     <section id="service" class="section">
-      <div class="container text-center">
-        <!-- Animation for the Title -->
-        <h6 class="section-title mb-4" style="animation: bounceIn 1.5s">
-          What We Offer
-        </h6>
-
-        <div class="row">
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card border">
-              <div class="card-body">
-                <i class="icon ti-crown"></i>
-                <h5 style="padding: 10px">
-                  <a href="{% url 'prayer' %}">Prayer Services</a>
-                </h5>
-                <p style="padding: 10px">
-                  Access information about prayer spaces, prayer time schedules,
-                  and Jummah prayer locations.
-                </p>
-              </div>
+        <div class="container text-center">
+            <h6 class="section-title mb-4" style="color:#003c50;"> <b>What We Offer </b> </h6>
+            <div class="row">
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="custom-card">
+                        <div class="card-body">
+                            <i class="icon ti-crown"></i>
+                            <h5 style="padding: 10px;"><a href="{% url 'prayer' %}" style="text-decoration: none; color: inherit;">Prayer Services</a></h5>
+                            <p style="padding: 10px;">Access information about prayer spaces, prayer time schedules, and Jummah prayer locations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="custom-card">
+                        <div class="card-body">
+                            <i class="icon ti-desktop"></i>
+                            <h5 style="padding: 10px;">Halakahs</h5>
+                            <p style="padding: 10px;">We offer Halakah throughout the semester wherein students get to learn more about deen.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="custom-card">
+                        <div class="card-body">
+                            <i class="icon ti-mobile"></i>
+                            <h5 style="padding: 10px;">Students social events</h5>
+                            <p style="padding: 10px;">Events throughout the semester focused in engaging and connecting the muslim community.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="custom-card">
+                        <div class="card-body">
+                            <i class="icon ti-bar-chart"></i>
+                            <h5 style="padding: 10px;">Dawah programs</h5>
+                            <p style="padding: 10px;">We engage in actively spreading the message of islam to various people around the community.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-desktop"></i>
-                <h5 style="padding: 10px">Halakahs</h5>
-                <p style="padding: 10px">
-                  We offer Halakah throughout the semester wherein students get
-                  to learn more about deen.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-mobile"></i>
-                <h5 style="padding: 10px">Students social events</h5>
-                <p style="padding: 10px">
-                  Events throughout the semester focused in engaging and
-                  connecting the muslim community .
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-bar-chart"></i>
-                <h5 style="padding: 10px">Dawah programs</h5>
-                <p style="padding: 10px">
-                  We engage in actively spreading the message of islam to
-                  various people around the community.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
     <!-- End of Section -->
 
-    <!-- End of event calender   section -->
-
-    <!-- Blog Section -->
-
     <!-- Contact section -->
-    <section class="bg-gray p-0 section">
-      <div class="container">
-        <div class="card bg-primary">
-          <div class="card-body text-light">
-            <div class="row align-items-center">
-              <div class="col-sm-9 text-center text-sm-left">
-                <h5 class="mt-3">CONTACT MSA FOR ISLAMIC HELP</h5>
-                <p class="mb-3">Eager to be involved?</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End  section. -->
-
-    <!-- Contact Section -->
     <section id="contact" class="position-relative section">
-      <div class="container text-center">
-        <div class="contact text-left">
-          <div class="form">
-            <h6 class="subtitle ml-4">Available 24/7</h6>
-            <h6 class="section-title mb-4">Get In Touch</h6>
-            <form id="contactForm">
-              {% csrf_token %}
-              <div class="form-group">
-                <input
-                  type="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="Enter email"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control"
-                  placeholder="Enter Name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <textarea
-                  name="message"
-                  class="form-control"
-                  placeholder="Message"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="button"
-                class="btn btn-primary btn-block rounded w-lg"
-              >
-                Send Message
-              </button>
-            </form>
-            <!-- Toast Container -->
-            <div
-              id="toastMessage"
-              style="
-                display: none;
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background-color: black;
-                color: white;
-                padding: 10px;
-                border-radius: 5px;
-              "
-            >
-              Message sent successfully!
+        <div class="container text-center">
+            <div class="contact text-left">
+                <div class="form">
+                    <h6 class="subtitle ml-4">Available 24/7</h6>
+                    <h6 class="section-title mb-4">Get In Touch</h6>
+                    <form id="contactForm">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" placeholder="Message" required></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block rounded w-lg">Send Message</button>
+                    </form>
+                    <!-- Toast Container -->
+                    <div id="toastMessage" style="display: none; position: fixed; bottom: 20px; right: 20px; background-color: black; color: white; padding: 10px; border-radius: 5px;">
+                        Message sent successfully!
+                    </div>
+                </div>
+                <div class="contact-infos">
+                    <div class="item">
+                        <i class="ti-location-pin"></i>
+                        <div>
+                            <h5>Location</h5>
+                            <p>Old Main 2498 & 2494 835 University Dr, Kamloops, BC V2C 0C8</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="ti-email"></i>
+                        <div class="mb-0">
+                            <h5>Email Address</h5>
+                            <p>asktrumsa@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="contact-infos">
-            <div class="item">
-              <i class="ti-location-pin"></i>
-              <div class="">
-                <h5>Location</h5>
-                <p>
-                  Old Main 2498 & 2494 835 University Dr, Kamloops, BC V2C 0C8
-                </p>
-              </div>
+            <div id="map">
+                <iframe src="https://snazzymaps.com/embed/571406" width="100%" height="400px" style="border: none"></iframe>
             </div>
-
-            <div class="item">
-              <i class="ti-email"></i>
-              <div class="mb-0">
-                <h5>Email Address</h5>
-                <p>asktrumsa@gmail.com</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div id="map">
-        <iframe
-          src="https://snazzymaps.com/embed/571406"
-          width="100%"
-          height="400px"
-          style="border: none"
-        ></iframe>
-      </div>
     </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("form#contactForm button").click(function (e) {
-          e.preventDefault();
-          $.ajax({
-            type: "POST",
-            url: "", // Assuming the form posts back to the same URL
-            data: {
-              name: $('form#contactForm input[name="name"]').val(),
-              email: $('form#contactForm input[name="email"]').val(),
-              message: $('form#contactForm textarea[name="message"]').val(),
-              csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
-            },
-            success: function () {
-              $("#toastMessage").show().delay(5000).fadeOut();
-            },
-            error: function () {
-              alert("There was an error. Try again please.");
-            },
-          });
-        });
-      });
-    </script>
-
     <!-- End of Contact Section -->
 
     <!-- Page Footer -->
     <footer class="page-footer">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-sm-6">
-            <p>
-              Copyright TRU MSA
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <div class="socials mt-4">
-              <a class="social-item" href="https://www.facebook.com/TRUMSA"
-                ><i class="ti-facebook"></i
-              ></a>
-              <a class="social-item" href="https://youtube.com/@trumsa"
-                ><i class="ti-youtube"></i
-              ></a>
-              <a class="social-item" href="https://www.instagram.com/tru_msa"
-                ><i class="ti-instagram"></i
-              ></a>
-            
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <p>
+                        Copyright TRU MSA
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="socials mt-4">
+                        <a class="social-item" href="https://www.facebook.com/TRUMSA"><i class="ti-facebook"></i></a>
+                        <a class="social-item" href="https://youtube.com/@trumsa"><i class="ti-youtube"></i></a>
+                        <a class="social-item" href="https://www.instagram.com/tru_msa"><i class="ti-instagram"></i></a>
+                        <a class="social-item" href="https://www.linkedin.com/company/trumsa/"><i class="ti-linkedin"></i></a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </footer>
     <!-- End of page footer -->
 
     <!-- core  -->
-    <script src="{% static 'vendors/jquery/jquery-3.4.1\\.js' %}"></script>
+    <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
     <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
     <!-- bootstrap 3 affix -->
     <script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
-
     <!-- steller js -->
     <script src="{% static 'js/steller.js' %}"></script>
-  </body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            });
+
+            document.querySelectorAll(".animate-on-scroll").forEach((section) => {
+                observer.observe(section);
+            });
+
+            document.querySelectorAll(".custom-card").forEach((card) => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
 </html>
